@@ -27,7 +27,7 @@ import hashlib, binascii
 import json
 
 from xml.dom import minidom
-import imp
+import importlib
 
 from xbmc import LOGDEBUG, LOGINFO, LOGWARNING, LOGERROR
 import xml.etree.ElementTree as ET
@@ -86,7 +86,7 @@ try:
     encoding = locale.getpreferredencoding(do_setlocale=True)
 except Exception as e:
     xbmc.log('## CoreELEC Addon ## ' + 'ERROR: (' + repr(e) + ')')
-imp.reload(sys)
+importlib.reload(sys)
 # sys.setdefaultencoding(encoding)
 
 ## load oeSettings modules
