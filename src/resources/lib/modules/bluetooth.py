@@ -190,9 +190,18 @@ class bluetooth(modules.Module):
         try:
             if hasattr(self, 'dbusBluezAdapter') and self.dbusBluezAdapter is not None:
                 # Only unregister if bluez is actually running, otherwise D-Bus
-                # will try to auto-activate it and hang for 25 seconds
+                # will try to auto-activate it and hang for 25 seconds.
+                # Run in a thread with a short timeout: during system reboot,
+                # bluez may still be registered on D-Bus but already shutting
+                # down (unresponsive), causing the synchronous D-Bus call to
+                # block for 25 s (libdbus default).  The D-Bus daemon cleans
+                # up agent registrations automatically when our connection
+                # closes, so it is safe to give up quickly here.
                 if dbus_bluez.system_has_bluez():
-                    self.bluez_agent.unregister_agent()
+                    t = threading.Thread(target=self.bluez_agent.unregister_agent)
+                    t.daemon = True
+                    t.start()
+                    t.join(timeout=2)
         except Exception:
             pass
         if hasattr(self, 'connection_thread'):

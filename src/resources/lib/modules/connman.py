@@ -7,6 +7,7 @@
 import os
 import random
 import string
+import threading
 
 import xbmc
 import xbmcgui
@@ -950,9 +951,18 @@ class connman(modules.Module):
         try:
             if hasattr(self, 'agent'):
                 # Only unregister if connman is actually running, otherwise D-Bus
-                # will try to auto-activate it and hang
+                # will try to auto-activate it and hang.
+                # Run in a thread with a short timeout: during system reboot,
+                # connman may still be registered on D-Bus but already shutting
+                # down (unresponsive), causing the synchronous D-Bus call to
+                # block for 25 s (libdbus default).  The D-Bus daemon cleans
+                # up agent registrations automatically when our connection
+                # closes, so it is safe to give up quickly here.
                 if dbus_connman.system_has_connman():
-                    self.agent.unregister_agent()
+                    t = threading.Thread(target=self.agent.unregister_agent)
+                    t.daemon = True
+                    t.start()
+                    t.join(timeout=2)
         except Exception:
             pass
         if hasattr(self, 'dbusConnmanManager'):
