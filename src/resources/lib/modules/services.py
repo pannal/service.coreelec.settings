@@ -731,6 +731,12 @@ class services:
                 if 'hidden' in self.struct['bluez']['settings']['obex_root']:
                     del self.struct['bluez']['settings']['obex_root']['hidden']
             self.oe.set_service('bluez', options, state)
+            # When enabling BT, initialize the bluetooth module if it
+            # wasn't started at boot (because BT was disabled then).
+            if state == 1 and 'bluetooth' in self.oe.dictModules:
+                bt = self.oe.dictModules['bluetooth']
+                if not hasattr(bt, 'bluez_agent'):
+                    bt.start_service()
             self.oe.set_busy(0)
             self.oe.dbg_log('services::init_bluetooth', 'exit_function', self.oe.LOGDEBUG)
         except Exception as e:
