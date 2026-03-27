@@ -7,6 +7,7 @@
 import os
 import glob
 import subprocess
+import threading
 import xbmc
 import xbmcgui
 import xbmcaddon
@@ -807,16 +808,11 @@ class services:
             self.oe.set_busy(0)
             self.oe.dbg_log('services::notify_connected', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
 
-    def get_audio_devices(self):
-        """Get list of available audio devices from Kodi.
-
-        Returns list in format: ['Display Label###device_value', ...]
-        Uses ### as separator since : and | appear in labels/values
-        """
+    def _get_audio_devices_impl(self, result_holder):
+        """Worker for get_audio_devices — runs in a thread so it can be timed out."""
         try:
             devices_list = []
 
-            # Get all audio settings including available device options
             result = self.oe.jsonrpc({
                 'method': 'Settings.GetSettings',
                 'params': {
@@ -829,10 +825,8 @@ class services:
             })
 
             if result and 'settings' in result:
-                # Find the audiooutput.audiodevice setting
                 for setting in result['settings']:
                     if setting.get('id') == 'audiooutput.audiodevice':
-                        # Build device strings in format: "Full Label###device_value"
                         if 'options' in setting:
                             for option in setting['options']:
                                 device_label = option.get('label', '')
@@ -842,12 +836,11 @@ class services:
                                     self.oe.dbg_log('services::get_audio_devices', f'Adding device: {device_string}', self.oe.LOGINFO)
                                     devices_list.append(device_string)
                             self.oe.dbg_log('services::get_audio_devices', f'Found {len(devices_list)} audio devices', self.oe.LOGINFO)
-                            # Add auto-detect option at the beginning
                             devices_list.insert(0, 'Auto-detect###')
                             self.oe.dbg_log('services::get_audio_devices', f'Final devices_list: {devices_list}', self.oe.LOGINFO)
-                            return devices_list
+                            result_holder.append(devices_list)
+                            return
 
-            # Fallback: get current and passthrough devices if Settings.GetSettings failed
             self.oe.dbg_log('services::get_audio_devices', 'Settings.GetSettings failed, using fallback', self.oe.LOGDEBUG)
 
             current_result = self.oe.jsonrpc({
@@ -868,9 +861,29 @@ class services:
                 if device and device not in [d.split('###', 1)[1] if '###' in d else d for d in devices_list]:
                     devices_list.append(f"{device}###{device}")
 
-            # Add auto-detect option at the beginning
             devices_list.insert(0, 'Auto-detect###')
-            return devices_list
+            result_holder.append(devices_list)
+        except Exception as e:
+            self.oe.dbg_log('services::get_audio_devices', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
+
+    def get_audio_devices(self):
+        """Get list of available audio devices from Kodi.
+
+        Returns list in format: ['Display Label###device_value', ...]
+        Uses ### as separator since : and | appear in labels/values.
+        Runs the JSON-RPC call in a thread with a timeout to avoid
+        blocking forever if kodi is shutting down.
+        """
+        try:
+            result_holder = []
+            t = threading.Thread(target=self._get_audio_devices_impl, args=(result_holder,))
+            t.daemon = True
+            t.start()
+            t.join(timeout=2)
+            if result_holder:
+                return result_holder[0]
+            self.oe.dbg_log('services::get_audio_devices', 'Timed out or no result', self.oe.LOGWARNING)
+            return ['Auto-detect###']
         except Exception as e:
             self.oe.dbg_log('services::get_audio_devices', 'ERROR: (' + repr(e) + ')', self.oe.LOGERROR)
             return ['Auto-detect###']
