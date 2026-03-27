@@ -85,6 +85,9 @@ class bluetooth(modules.Module):
 
     @log.log_function()
     def start_service(self):
+        if oe.get_service_state('bluez') != '1':
+            log.log('Bluetooth service disabled, skipping start_service', log.INFO)
+            return
         self._restore_audio_on_start()
         self._save_default_audio_device()
         self.bluez_agent = Bluez_Agent(self)
