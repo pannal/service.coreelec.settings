@@ -15,6 +15,7 @@ import re
 import sys
 import urllib.request, urllib.error, urllib.parse
 import time
+import threading
 import tarfile
 import traceback
 import subprocess
@@ -553,16 +554,24 @@ def set_dtbxml_value(var, value, retry='yes'):
     dtb_root = None
     subprocess.call("mount -o remount,ro /flash", shell=True)
 
-def jsonrpc(query):
+def jsonrpc(query, timeout=10):
     querystring = {"jsonrpc": "2.0", "id": 1}
     querystring.update(query)
-    try:
-        response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring)))
-        if 'result' in response:
-            return response['result']
-    except TypeError as e:
-        dbg_log('oe::jsonrpc', 'ERROR: (' + repr(e) + ')')
-    return None
+    result_holder = [None]
+    def _call():
+        try:
+            response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring)))
+            if 'result' in response:
+                result_holder[0] = response['result']
+        except TypeError as e:
+            dbg_log('oe::jsonrpc', 'ERROR: (' + repr(e) + ')')
+    t = threading.Thread(target=_call)
+    t.daemon = True
+    t.start()
+    t.join(timeout=timeout)
+    if t.is_alive():
+        dbg_log('oe::jsonrpc', 'WARNING: call timed out after %ds: %s' % (timeout, query.get('method', '?')))
+    return result_holder[0]
 
 def url_quote(var):
     return urllib.parse.quote(var, safe="")

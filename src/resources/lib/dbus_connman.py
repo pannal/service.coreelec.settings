@@ -222,4 +222,4 @@ def technology_wifi_set_tethering_passphrase(passphrase):
 
 
 def system_has_connman():
-    return BUS_NAME in dbus_utils.list_names()
+    return BUS_NAME in dbus_utils.list_names(timeout=2)

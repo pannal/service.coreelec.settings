@@ -21,7 +21,7 @@ class Agent(object):
     def __init__(self, bus_name, path_agent):
         self.bus_name = bus_name
         self.path_agent = path_agent
-        if self.bus_name in list_names():
+        if self.bus_name in list_names(timeout=10):
             self.register_agent()
         self.watch_name()
 
@@ -94,8 +94,27 @@ class LoopThread(threading.Thread):
             self.join(timeout=2)
 
 
-def list_names():
-    return BUS[dbussy.DBUS.SERVICE_DBUS]['/'].get_interface(dbussy.DBUS.INTERFACE_DBUS).ListNames()[0]
+def list_names(timeout=None):
+    """Get list of registered D-Bus names.
+
+    When timeout is given, runs the call in a thread and returns an
+    empty list if it doesn't complete in time (prevents blocking for
+    25s when dbus is shutting down).
+    """
+    if timeout is None:
+        return BUS[dbussy.DBUS.SERVICE_DBUS]['/'].get_interface(dbussy.DBUS.INTERFACE_DBUS).ListNames()[0]
+    import threading
+    result = [None]
+    def _call():
+        try:
+            result[0] = BUS[dbussy.DBUS.SERVICE_DBUS]['/'].get_interface(dbussy.DBUS.INTERFACE_DBUS).ListNames()[0]
+        except Exception:
+            pass
+    t = threading.Thread(target=_call)
+    t.daemon = True
+    t.start()
+    t.join(timeout=timeout)
+    return result[0] if result[0] is not None else []
 
 
 def convert_from_dbussy(data):
@@ -111,11 +130,23 @@ def convert_from_dbussy(data):
 
 
 def call_method(bus_name, path, interface, method_name, *args, **kwargs):
-    interface = BUS[bus_name][path].get_interface(interface)
-    method = getattr(interface, method_name)
-    result = method(*args, **kwargs)
-    first = next(iter(result or []), None)
-    return convert_from_dbussy(first)
+    timeout = kwargs.pop('timeout', 10)
+    result_holder = [None]
+    def _call():
+        try:
+            iface = BUS[bus_name][path].get_interface(interface)
+            method = getattr(iface, method_name)
+            result = method(*args, **kwargs)
+            first = next(iter(result or []), None)
+            result_holder[0] = convert_from_dbussy(first)
+        except Exception:
+            pass
+    import threading
+    t = threading.Thread(target=_call)
+    t.daemon = True
+    t.start()
+    t.join(timeout=timeout)
+    return result_holder[0]
 
 
 async def call_async_method(bus_name, path, interface, method_name, *args, **kwargs):

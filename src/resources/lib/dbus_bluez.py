@@ -229,4 +229,4 @@ def find_devices():
 
 
 def system_has_bluez():
-    return BUS_NAME in dbus_utils.list_names()
+    return BUS_NAME in dbus_utils.list_names(timeout=2)
