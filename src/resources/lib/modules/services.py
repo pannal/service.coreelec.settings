@@ -550,11 +550,15 @@ class services:
                     value = self.oe.read_setting('bluetooth', 'restore_audio_device')
                     if not value:
                         value = ''
-                    # Populate available audio devices dynamically
-                    audio_devices = self.get_audio_devices()
-                    self.oe.dbg_log('services::load_values', f'Audio devices list: {audio_devices}', self.oe.LOGINFO)
-                    self.struct['bluez']['settings']['restore_audio_device']['values'] = audio_devices
-                    self.oe.dbg_log('services::load_values', f'Values set to: {self.struct["bluez"]["settings"]["restore_audio_device"]["values"]}', self.oe.LOGINFO)
+                    # Populate available audio devices dynamically, but only
+                    # when BT is actually enabled — the JSON-RPC call can
+                    # block if kodi is shutting down, and there is no point
+                    # enumerating audio devices when BT is off.
+                    if self.struct['bluez']['settings']['enabled']['value'] == '1':
+                        audio_devices = self.get_audio_devices()
+                        self.oe.dbg_log('services::load_values', f'Audio devices list: {audio_devices}', self.oe.LOGINFO)
+                        self.struct['bluez']['settings']['restore_audio_device']['values'] = audio_devices
+                        self.oe.dbg_log('services::load_values', f'Values set to: {self.struct["bluez"]["settings"]["restore_audio_device"]["values"]}', self.oe.LOGINFO)
                     self.struct['bluez']['settings']['restore_audio_device']['value'] = value
                 else:
                     self.struct['bluez']['hidden'] = 'true'
