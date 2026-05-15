@@ -413,7 +413,7 @@ msgid "Forum username to identify the connection"
 msgstr ""
 
 msgctxt "#913"
-msgid "Experimental. Enable UAS for USB storage (higher queue depth, lower latency, better concurrency). Applied at the next reboot. Some USB-SATA/NVMe bridges and cheap flash drives misbehave under UAS. If a drive becomes unusable after enabling this, SSH in and run: rm /storage/.config/uas.enabled && reboot. Do not enable on systems booting from a problematic USB stick."
+msgid "Experimental. Enable UAS for USB storage (higher queue depth, lower latency, better concurrency). Applied at the next reboot. Some USB-SATA/NVMe bridges and cheap flash drives misbehave under UAS. To keep a specific device on BOT (standard) mode, add its lsusb VID:PID to /storage/.config/uas-blacklist.txt, one per line, and reboot. Full recovery if a drive becomes unusable: SSH in and run rm /storage/.config/uas.enabled && reboot. Do not enable on systems booting from a problematic USB stick."
 msgstr ""
 
 
