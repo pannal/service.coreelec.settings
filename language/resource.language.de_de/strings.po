@@ -1143,3 +1143,15 @@ msgstr "Öffentlich"
 msgctxt "#32400"
 msgid "Idle Timeout"
 msgstr "Leerlauf-Timeout"
+
+msgctxt "#913"
+msgid "Experimental. Enable UAS for USB storage (higher queue depth, lower latency, better concurrency). Applied at the next reboot. Some USB-SATA/NVMe bridges and cheap flash drives misbehave under UAS. If a drive becomes unusable after enabling this, SSH in and run: rm /storage/.config/uas.enabled && reboot. Do not enable on systems booting from a problematic USB stick."
+msgstr "Experimentell. Aktiviert UAS für USB-Speicher (höhere Warteschlangentiefe, geringere Latenz, bessere Parallelität). Wird beim nächsten Neustart angewendet. Manche USB-SATA/NVMe-Brücken und billige USB-Sticks verhalten sich unter UAS fehlerhaft. Falls ein Laufwerk nach dem Aktivieren unbenutzbar wird: per SSH anmelden und ausführen: rm /storage/.config/uas.enabled && reboot. Nicht aktivieren, wenn das System von einem problematischen USB-Stick bootet."
+
+msgctxt "#32536"
+msgid "USB Attached SCSI (UAS)"
+msgstr "USB Attached SCSI (UAS)"
+
+msgctxt "#33531"
+msgid "UAS setting changed.[CR]A reboot is required for the new setting to take effect."
+msgstr "UAS-Einstellung geändert.[CR]Ein Neustart ist erforderlich, damit die neue Einstellung wirksam wird."

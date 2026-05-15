@@ -371,6 +371,14 @@ class hardware:
                             'type': 'multivalue',
                             'values': ['Disabled'],
                             },
+                        'uas_enable': {
+                            'order': 4,
+                            'name': 32536,
+                            'InfoText': 913,
+                            'value': '0',
+                            'action': 'set_uas_enable',
+                            'type': 'bool',
+                            },
                         },
                     },
                 }
@@ -687,6 +695,12 @@ class hardware:
 
             self.struct['hdd']['settings']['disk_idle']['values'] = disk_idle_times_names
 
+            # Hide the UAS toggle on builds that don't ship uas.ko.
+            if not glob.glob('/usr/lib/modules/*/uas/uas.ko'):
+                self.struct['hdd']['settings']['uas_enable']['hidden'] = 'true'
+            self.struct['hdd']['settings']['uas_enable']['value'] = \
+                '1' if os.path.exists('/storage/.config/uas.enabled') else '0'
+
             if hide_power_section:
                 self.struct['power']['hidden'] = 'true'
 
@@ -937,6 +951,29 @@ class hardware:
             self.oe.dbg_log('hardware::set_disk_idle', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::set_disk_idle', 'ERROR: (%s)' % repr(e), 4)
+        finally:
+            self.oe.set_busy(0)
+
+    def set_uas_enable(self, listItem=None):
+        try:
+            self.oe.dbg_log('hardware::set_uas_enable', 'enter_function', 0)
+            self.oe.set_busy(1)
+            if listItem is None:
+                return
+
+            self.set_value(listItem)
+            marker = '/storage/.config/uas.enabled'
+
+            if self.struct['hdd']['settings']['uas_enable']['value'] == '1':
+                open(marker, 'a').close()
+            else:
+                if os.path.exists(marker):
+                    os.remove(marker)
+
+            xbmcgui.Dialog().ok(self.oe._(33512), self.oe._(33531))
+            self.oe.dbg_log('hardware::set_uas_enable', 'exit_function', 0)
+        except Exception as e:
+            self.oe.dbg_log('hardware::set_uas_enable', 'ERROR: (%s)' % repr(e), 4)
         finally:
             self.oe.set_busy(0)
 

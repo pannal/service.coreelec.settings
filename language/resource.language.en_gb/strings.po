@@ -412,6 +412,10 @@ msgctxt "#912"
 msgid "Forum username to identify the connection"
 msgstr ""
 
+msgctxt "#913"
+msgid "Experimental. Enable UAS for USB storage (higher queue depth, lower latency, better concurrency). Applied at the next reboot. Some USB-SATA/NVMe bridges and cheap flash drives misbehave under UAS. If a drive becomes unusable after enabling this, SSH in and run: rm /storage/.config/uas.enabled && reboot. Do not enable on systems booting from a problematic USB stick."
+msgstr ""
+
 
 msgctxt "#32001"
 msgid "Services"
@@ -1361,6 +1365,10 @@ msgctxt "#32535"
 msgid "Smartchip WiFi Driver"
 msgstr ""
 
+msgctxt "#32536"
+msgid "USB Attached SCSI (UAS)"
+msgstr ""
+
 
 msgctxt "#33510"
 msgid "Warning!"
@@ -1445,4 +1453,8 @@ msgstr ""
 
 msgctxt "#33530"
 msgid "Connection name"
+msgstr ""
+
+msgctxt "#33531"
+msgid "UAS setting changed.[CR]A reboot is required for the new setting to take effect."
 msgstr ""
