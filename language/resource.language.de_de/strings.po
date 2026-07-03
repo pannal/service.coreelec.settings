@@ -46,6 +46,14 @@ msgctxt "#608"
 msgid "Architecture: "
 msgstr "Architektur: "
 
+msgctxt "#609"
+msgid "CoreELEC is created by a global team of Linux and Kodi enthusiasts who contribute time and effort to manage the project, write code, and provide support. We have fun making it. We hope you have fun using it!"
+msgstr "CoreELEC wird von einem weltweiten Team aus Linux- und Kodi-Enthusiasten entwickelt, die Zeit und Mühe investieren, um das Projekt zu betreuen, Code zu schreiben und Support zu leisten. Wir haben Spaß daran, es zu entwickeln. Wir hoffen, es macht genauso viel Spaß, es zu benutzen!"
+
+msgctxt "#610"
+msgid "[B]Support[/B] is provided via our forum:[CR]https://discourse.coreelec.org[CR][CR][B]Documentation[/B] can be read at our website:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] can be read at our website:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] can be found on GitHub:[CR]https://github.com/CoreELEC[CR][CR]"
+msgstr "[B]Support[/B] gibt es in unserem Forum:[CR]https://discourse.coreelec.org[CR][CR][B]Dokumentation[/B] ist auf unserer Website zu finden:[CR]https://coreelec.org[CR][CR][B]Wiki[/B] ist auf unserer Website zu finden:[CR]https://wiki.coreelec.org[CR][CR][B]Code[/B] ist auf GitHub zu finden:[CR]https://github.com/CoreELEC[CR][CR]"
+
 msgctxt "#700"
 msgid ""
 "Configure a hostname, keyboard type, perform a reset, update, or backups and"
@@ -68,6 +76,10 @@ msgstr "Systemdienste z.B. Samba Dateifreigaben, SSH Fernzugriffe, Cron, Avahi u
 msgctxt "#704"
 msgid "Configure and pair Bluetooth devices"
 msgstr "Bluetoothgeräte verbinden und verwalten"
+
+msgctxt "#705"
+msgid "Useful information like version and architecture details, support and documentation links."
+msgstr "Nützliche Informationen wie Versions- und Architekturdetails sowie Support- und Dokumentations-Links."
 
 msgctxt "#707"
 msgid "Configure updates"
@@ -104,6 +116,10 @@ msgid ""
 "is available"
 msgstr "Auf EIN stellen und eine Bildschirm-Benachrichtigung wird angezeigt, sobald eine neue Aktualisierung verfügbar ist."
 
+msgctxt "#716"
+msgid "Update to the next stable release instead of remaining on nightly builds, when the next stable release is ready."
+msgstr "Auf die nächste stabile Version aktualisieren, statt auf Nightly-Builds zu bleiben, sobald die nächste stabile Version verfügbar ist."
+
 msgctxt "#718"
 msgid ""
 "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
@@ -122,7 +138,7 @@ msgstr "Auf EIN stellen, um Bluetooth zu aktivieren"
 
 msgctxt "#721"
 msgid "Send CoreELEC debug info without logs to https://paste.coreelec.org, and display the short URL"
-msgstr ""
+msgstr "CoreELEC-Debug-Informationen ohne Protokolle an https://paste.coreelec.org senden und die Kurz-URL anzeigen"
 
 msgctxt "#722"
 msgid ""
@@ -328,11 +344,128 @@ msgid ""
 msgstr "Das Überprüfen auf eine neue Version übermittelt die installierte Distribution, das Projekt, die CPU-Architektur und die Version an den Update-Server. Diese Daten werden auch verwendet, um grundlegende Statistiken für das Projekt zu übermitteln. Um weiterhin nach Updates suchen zu können, bei dem das übermitteln der Statistiken deaktiviert ist, bitte diese Option deaktivieren."
 
 msgctxt "#773"
-msgid ""
-"Set the idle timeout (in minutes) before devices will be disconnected "
-"(defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" "
-"has been activated in the LibreELEC device connection context menu."
-msgstr "Das Leerlauf-Timeout (in Minuten) einstellen, bevor die Geräte getrennt werden (standardmäßig 0 für kein Timeout). Gilt für Geräte, bei denen \"Standby aktivieren\" im Kontextmenü der @DISTRONAME@ Geräteverbindung Menü aktiviert wurde."
+msgid "Set the idle timeout (in minutes) before devices will be disconnected (defaults to 0 for no timeout). Applies to devices where \"Enable Standby\" has been activated in the @DISTRONAME@ device connection context menu."
+msgstr "Das Leerlauf-Timeout (in Minuten) festlegen, bevor Geräte getrennt werden (Standard 0 = kein Timeout). Gilt für Geräte, bei denen \"Standby aktivieren\" im Kontextmenü der @DISTRONAME@-Geräteverbindung aktiviert wurde."
+
+msgctxt "#774"
+msgid "Automatic reconnect previously paired device after booting"
+msgstr "Zuvor gekoppelte Geräte nach dem Start automatisch wieder verbinden"
+
+msgctxt "#775"
+msgid "Automatic change audio output to PULSE when a audio device get connected"
+msgstr "Audioausgabe automatisch auf PULSE umstellen, wenn ein Audiogerät verbunden wird"
+
+msgctxt "#776"
+msgid "Show notification when a Bluetooth device connects or disconnects (excludes remotes and game controllers)"
+msgstr "Benachrichtigung anzeigen, wenn ein Bluetooth-Gerät verbunden oder getrennt wird (außer Fernbedienungen und Game-Controller)"
+
+msgctxt "#777"
+msgid "Specify which audio device to restore when Bluetooth disconnects. Leave empty to auto-detect. Example: ALSA: AML-AUGESOUND, HDMI"
+msgstr "Festlegen, welches Audiogerät wiederhergestellt wird, wenn Bluetooth getrennt wird. Leer lassen für automatische Erkennung. Beispiel: ALSA: AML-AUGESOUND, HDMI"
+
+msgctxt "#780"
+msgid "Configure hardware settings"
+msgstr "Hardware-Einstellungen konfigurieren"
+
+msgctxt "#781"
+msgid "Set fan mode (off/auto/manual)"
+msgstr "Lüftermodus festlegen (Aus/Auto/Manuell)"
+
+msgctxt "#782"
+msgid "Set fan speed level"
+msgstr "Lüftergeschwindigkeit festlegen"
+
+msgctxt "#785"
+msgid "Modify Vendor Bootloader to support all wake-up features such as CEC, Wake-On-LAN, IR, and GPIO wake-up from suspend or power off state!"
+msgstr "Hersteller-Bootloader anpassen, um alle Aufweckfunktionen wie CEC, Wake-on-LAN, IR und GPIO-Aufwecken aus dem Standby- oder ausgeschalteten Zustand zu unterstützen!"
+
+msgctxt "#786"
+msgid "Set the IR remote control power button code"
+msgstr "Code der Einschalttaste der IR-Fernbedienung festlegen"
+
+msgctxt "#787"
+msgid "Enable/Disable Wake-on-LAN"
+msgstr "Wake-on-LAN aktivieren/deaktivieren"
+
+msgctxt "#788"
+msgid "Enable/Disable USB Power when device is off/suspend"
+msgstr "USB-Stromversorgung aktivieren/deaktivieren, wenn das Gerät ausgeschaltet oder im Standby ist"
+
+msgctxt "#789"
+msgid "Change device LED behavior"
+msgstr "LED-Verhalten des Geräts ändern"
+
+msgctxt "#790"
+msgid "Enable/Disable VESA display modes"
+msgstr "VESA-Anzeigemodi aktivieren/deaktivieren"
+
+msgctxt "#791"
+msgid "Set CPU governor for all cores"
+msgstr "CPU-Governor für alle Kerne festlegen"
+
+msgctxt "#792"
+msgid "Enable/Disable HDD parking on power off/suspend"
+msgstr "Parken der Festplatte beim Ausschalten/Standby aktivieren/deaktivieren"
+
+msgctxt "#793"
+msgid "Time in seconds to wait for the HDD to spin down when parking"
+msgstr "Wartezeit in Sekunden, bis die Festplatte beim Parken zum Stillstand kommt"
+
+msgctxt "#794"
+msgid "Time in minutes/hours until the HDD should enter suspend mode"
+msgstr "Zeit in Minuten/Stunden, bis die Festplatte in den Ruhezustand wechselt"
+
+msgctxt "#900"
+msgid "Configure eMMC speed mode"
+msgstr "eMMC-Geschwindigkeitsmodus konfigurieren"
+
+msgctxt "#901"
+msgid "Configure WiFi SoC SDIO speed"
+msgstr "SDIO-Geschwindigkeit des WLAN-SoC konfigurieren"
+
+msgctxt "#902"
+msgid "Enable/Disable SPI interface"
+msgstr "SPI-Schnittstelle aktivieren/deaktivieren"
+
+msgctxt "#903"
+msgid "Choose IR protocol type for meson-remote"
+msgstr "IR-Protokolltyp für meson-remote auswählen"
+
+msgctxt "#904"
+msgid "Configure DVB GPIO support"
+msgstr "DVB-GPIO-Unterstützung konfigurieren"
+
+msgctxt "#905"
+msgid "Configure Wired Network Interface"
+msgstr "Kabelgebundene Netzwerkschnittstelle konfigurieren"
+
+msgctxt "#906"
+msgid "Choose if IP1001 is assembled"
+msgstr "Auswählen, ob ein IP1001 verbaut ist"
+
+msgctxt "#907"
+msgid "Switch between using the USB3 interface or the PCIE interface on m.2 connector"
+msgstr "Zwischen USB3- und PCIE-Schnittstelle am M.2-Anschluss umschalten"
+
+msgctxt "#908"
+msgid "Choose assembled Smartchip device"
+msgstr "Verbautes Smartchip-Gerät auswählen"
+
+msgctxt "#909"
+msgid "Set to ON to enable service"
+msgstr "Auf EIN stellen, um den Dienst zu aktivieren"
+
+msgctxt "#910"
+msgid "Set to ON to send invitation to the @DISTRONAME@ developers for remote debugging"
+msgstr "Auf EIN stellen, um den @DISTRONAME@-Entwicklern eine Einladung zum Remote-Debugging zu senden"
+
+msgctxt "#911"
+msgid "Select the SSH key used for access control"
+msgstr "SSH-Schlüssel für die Zugriffskontrolle auswählen"
+
+msgctxt "#912"
+msgid "Forum username to identify the connection"
+msgstr "Forum-Benutzername zur Identifikation der Verbindung"
 
 msgctxt "#32001"
 msgid "Services"
@@ -345,6 +478,10 @@ msgstr "System"
 msgctxt "#32003"
 msgid "Interface"
 msgstr "Schnittstelle"
+
+msgctxt "#32004"
+msgid "Hardware"
+msgstr "Hardware"
 
 msgctxt "#32005"
 msgid "Updates"
@@ -435,6 +572,10 @@ msgstr "Aktualisierung von %s auf %s"
 msgctxt "#32029"
 msgid "up to date: %s"
 msgstr "Auf dem neusten Stand: %s"
+
+msgctxt "#32030"
+msgid "Update To Next Stable"
+msgstr "Auf nächste stabile Version aktualisieren"
 
 msgctxt "#32100"
 msgid "Connections"
@@ -907,18 +1048,8 @@ msgid "Thank you"
 msgstr "Danke"
 
 msgctxt "#32318"
-msgid ""
-"Your @DISTRONAME@ installation is now complete and you are about to enter "
-"Kodi where you can set up your media libraries. For help with this, there is"
-" a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a "
-"dedicated team of developers who work purely in their spare time. Even as a "
-"volunteer project, we still have to pay for our internet bandwidth and "
-"development resources so if you find @DISTRONAME@ useful we will always "
-"appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using"
-" @DISTRONAME@ as much as we've enjoyed building it. If you need any more "
-"help, you can find links to our support forum along with latest news at our "
-"website."
-msgstr "Die Installation von @DISTRONAME@ ist abgeschlossen. Du darfst nun endlich in die Kodi-Welt eintauchen in der Du Deine Mediatheken einrichten kannst. Falls Du Hilfe benötigst, findest Du unter wiki.kodi.tv Anleitungen und Unterstützung.[CR][CR]@DISTRONAME@ wird von einem engagierten Freiwilligenteam entwickelt, das daran ausschließlich in seiner Freizeit arbeiten. Dennoch müssen wir selbst als ehrenamtliches Projekt unser Internet, die Website, das Webhosting, die Technik und die Entwicklungskosten bezahlen. Wenn Du also @DISTRONAME@ nützlich findest, würden wir uns über eine Spende in beliebiger Höhe freuen.[CR][CR]Zum Schluss wünschen wir Dir mit @DISTRONAME@ genauso viel Spaß, wie wir bei der Entwicklung hatten. Falls Du weitere Hilfe benötigst, findest Du auf unserer Website auch ein Support-Forum und aktuelle Meldungen."
+msgid "Your @DISTRONAME@ installation is now complete and you are about to enter Kodi where you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a dedicated team of developers who work purely in their spare time.[CR][CR]Finally, we hope you enjoy using @DISTRONAME@ as much as we've enjoyed building it. If you need any more help, you can find links to our support forum along with latest news at our website."
+msgstr "Die Installation von @DISTRONAME@ ist jetzt abgeschlossen, und gleich startet Kodi, wo die Medienbibliotheken eingerichtet werden können. Hilfe dazu bietet die Anleitung auf wiki.kodi.tv[CR][CR]@DISTRONAME@ wird von einem engagierten Team von Entwicklern ausschließlich in deren Freizeit entwickelt.[CR][CR]Wir wünschen mit @DISTRONAME@ genauso viel Freude, wie wir beim Entwickeln hatten. Für weitere Hilfe gibt es auf unserer Website Links zum Support-Forum sowie aktuelle Neuigkeiten."
 
 msgctxt "#32319"
 msgid "Cron"
@@ -1046,6 +1177,10 @@ msgctxt "#32373"
 msgid "Restore Backup"
 msgstr "Datensicherung wiederherstellen"
 
+msgctxt "#32374"
+msgid "Restore file cannot be accessed by the system, it must be located on the local filesystem"
+msgstr "Auf die Wiederherstellungsdatei kann nicht zugegriffen werden; sie muss sich im lokalen Dateisystem befinden"
+
 msgctxt "#32375"
 msgid "Backup Progress"
 msgstr "Fortschritt der Datensicherung"
@@ -1114,11 +1249,15 @@ msgstr "Das Einstellungs-Addon ist nicht bereit. Versuch es später erneut."
 
 msgctxt "#32391"
 msgid "Upload configs and other debug info without logs, and view the short URL"
-msgstr ""
+msgstr "Konfigurationen und andere Debug-Informationen ohne Protokolle hochladen und die Kurz-URL anzeigen"
 
 msgctxt "#32393"
 msgid "** SAFE MODE! ** SAFE MODE! ** SAFE MODE! **"
 msgstr "** Sicherheitsmodus! ** Sicherheitsmodus! ** Sicherheitsmodus! **"
+
+msgctxt "#32394"
+msgid "@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi crashes.[CR][CR]You may now investigate the cause of the crashes by enabling ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via \"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" share.[CR][CR]Rebooting will return to your original Kodi installation.[CR][CR]Go to https://discourse.coreelec.org if you require further assistance. When posting to the forum include the link to your crash log which can be viewed by clicking the crash log option in Settings > CoreELEC > System > Submit Log."
+msgstr "@DISTRONAME@ wurde wegen wiederholter Kodi-Abstürze vorübergehend im abgesicherten Modus gestartet.[CR][CR]Die Absturzursache kann jetzt untersucht werden, indem SSH oder Samba aktiviert wird.[CR][CR]Die ursprüngliche Kodi-Installation ist über \"/storage/.kodi.FAILED\" und die Samba-Freigabe \"Kodi-Failed\" erreichbar.[CR][CR]Ein Neustart kehrt zur ursprünglichen Kodi-Installation zurück.[CR][CR]Weitere Hilfe gibt es auf https://discourse.coreelec.org. Bei Forenbeiträgen bitte den Link zum Absturzprotokoll angeben; dieser ist über die Absturzprotokoll-Option unter Einstellungen > CoreELEC > System > Fehlerbericht (Log) übermitteln einsehbar."
 
 msgctxt "#32395"
 msgid "Firewall"
@@ -1148,9 +1287,257 @@ msgctxt "#913"
 msgid "Experimental. Enable UAS for USB storage (higher queue depth, lower latency, better concurrency). Applied at the next reboot. Some USB-SATA/NVMe bridges and cheap flash drives misbehave under UAS. To keep a specific device on BOT (standard) mode, add its lsusb VID:PID to /storage/.config/uas-blacklist.txt, one per line, and reboot. Full recovery if a drive becomes unusable: SSH in and run rm /storage/.config/uas.enabled && reboot. Do not enable on systems booting from a problematic USB stick."
 msgstr "Experimentell. Aktiviert UAS für USB-Speicher (höhere Warteschlangentiefe, geringere Latenz, bessere Parallelität). Wird beim nächsten Neustart angewendet. Manche USB-SATA/NVMe-Brücken und billige USB-Sticks verhalten sich unter UAS fehlerhaft. Um ein bestimmtes Gerät im BOT-Modus (Standard) zu halten, dessen lsusb VID:PID in /storage/.config/uas-blacklist.txt eintragen (eine pro Zeile) und neu starten. Vollständige Wiederherstellung bei unbenutzbarem Laufwerk: per SSH anmelden und ausführen: rm /storage/.config/uas.enabled && reboot. Nicht aktivieren, wenn das System von einem problematischen USB-Stick bootet."
 
+msgctxt "#32401"
+msgid "Connect paired devices"
+msgstr "Gekoppelte Geräte verbinden"
+
+msgctxt "#32402"
+msgid "Switch audio device on connection"
+msgstr "Audiogerät bei Verbindung umschalten"
+
+msgctxt "#32403"
+msgid "Show connection notifications"
+msgstr "Verbindungsbenachrichtigungen anzeigen"
+
+msgctxt "#32404"
+msgid "Restore audio device (optional)"
+msgstr "Audiogerät wiederherstellen (optional)"
+
+msgctxt "#32410"
+msgid "Logging"
+msgstr "Protokollierung"
+
+msgctxt "#32411"
+msgid "Use Persistent Logs"
+msgstr "Dauerhafte Protokolle verwenden"
+
+msgctxt "#32412"
+msgid "Use Persistent Journal and Log files instead of default volatile ones. Reboot to apply changes."
+msgstr "Dauerhafte Journal- und Protokolldateien statt der standardmäßig flüchtigen verwenden. Neustart erforderlich, um Änderungen zu übernehmen."
+
+msgctxt "#32413"
+msgid "Journal Size"
+msgstr "Journal-Größe"
+
+msgctxt "#32414"
+msgid "Set max. size of persistent journal. Reboot to apply changes."
+msgstr "Maximale Größe des dauerhaften Journals festlegen. Neustart erforderlich, um Änderungen zu übernehmen."
+
+msgctxt "#32415"
+msgid "Disable journald Rate Limit"
+msgstr "journald-Ratenbegrenzung deaktivieren"
+
+msgctxt "#32416"
+msgid "Reboot to apply changes."
+msgstr "Neustart erforderlich, um Änderungen zu übernehmen."
+
+msgctxt "#32500"
+msgid "Fan"
+msgstr "Lüfter"
+
+msgctxt "#32501"
+msgid "Power"
+msgstr "Energie"
+
+msgctxt "#32502"
+msgid "Display"
+msgstr "Anzeige"
+
+msgctxt "#32503"
+msgid "Performance"
+msgstr "Leistung"
+
+msgctxt "#32504"
+msgid "CEC"
+msgstr "CEC"
+
+msgctxt "#32505"
+msgid "HDD"
+msgstr "Festplatte"
+
+msgctxt "#32506"
+msgid "Device Tree"
+msgstr "Device Tree"
+
+msgctxt "#32510"
+msgid "Fan Mode"
+msgstr "Lüftermodus"
+
+msgctxt "#32511"
+msgid "Speed Level"
+msgstr "Geschwindigkeitsstufe"
+
+msgctxt "#32515"
+msgid "Inject BL301 Blob"
+msgstr "BL301-Blob injizieren"
+
+msgctxt "#32516"
+msgid "IR Remote Power Code"
+msgstr "Power-Code der IR-Fernbedienung"
+
+msgctxt "#32517"
+msgid "Wake-on-LAN"
+msgstr "Wake-on-LAN"
+
+msgctxt "#32518"
+msgid "USB Power"
+msgstr "USB-Stromversorgung"
+
+msgctxt "#32519"
+msgid "System LED"
+msgstr "System-LED"
+
+msgctxt "#32520"
+msgid "VESA modes"
+msgstr "VESA-Modi"
+
+msgctxt "#32521"
+msgid "CPU governor"
+msgstr "CPU-Governor"
+
+msgctxt "#32522"
+msgid "Parking"
+msgstr "Parken"
+
+msgctxt "#32523"
+msgid "Parking Time"
+msgstr "Parkzeit"
+
+msgctxt "#32524"
+msgid "Idle Time"
+msgstr "Leerlaufzeit"
+
+msgctxt "#32525"
+msgid "eMMC Speed Mode"
+msgstr "eMMC-Geschwindigkeitsmodus"
+
+msgctxt "#32526"
+msgid "WiFi SoC SDIO Speed"
+msgstr "SDIO-Geschwindigkeit des WLAN-SoC"
+
+msgctxt "#32527"
+msgid "Red LED"
+msgstr "Rote LED"
+
+msgctxt "#32528"
+msgid "SPI Interface"
+msgstr "SPI-Schnittstelle"
+
+msgctxt "#32529"
+msgid "IR Protocol Type"
+msgstr "IR-Protokolltyp"
+
+msgctxt "#32530"
+msgid "DVB GPIO Support"
+msgstr "DVB-GPIO-Unterstützung"
+
+msgctxt "#32531"
+msgid "Wired Network Interface"
+msgstr "Kabelgebundene Netzwerkschnittstelle"
+
+msgctxt "#32532"
+msgid "Green LED"
+msgstr "Grüne LED"
+
+msgctxt "#32533"
+msgid "IP1001 Ethernet Transceiver"
+msgstr "IP1001-Ethernet-Transceiver"
+
+msgctxt "#32534"
+msgid "VIM3 USB3/PCIE Switch"
+msgstr "VIM3 USB3/PCIE-Umschalter"
+
+msgctxt "#32535"
+msgid "Smartchip WiFi Driver"
+msgstr "Smartchip-WLAN-Treiber"
+
 msgctxt "#32536"
 msgid "USB Attached SCSI (UAS)"
 msgstr "USB Attached SCSI (UAS)"
+
+msgctxt "#33510"
+msgid "Warning!"
+msgstr "Warnung!"
+
+msgctxt "#33511"
+msgid "Continue"
+msgstr "Fortfahren"
+
+msgctxt "#33512"
+msgid "Finished!"
+msgstr "Fertig!"
+
+msgctxt "#33513"
+msgid "Notice!"
+msgstr "Hinweis!"
+
+msgctxt "#33514"
+msgid "Error!"
+msgstr "Fehler!"
+
+msgctxt "#33515"
+msgid "Inject Bootloader BL301 Blob..."
+msgstr "Bootloader-BL301-Blob injizieren..."
+
+msgctxt "#33516"
+msgid "[B][COLOR red]Note: This will modify the firmware on your device.[/COLOR][/B][CR]The BL301 bootloader blob has been customized by the CoreELEC Team to support all features used to wake a device from a suspend or power off state!"
+msgstr "[B][COLOR red]Hinweis: Dies verändert die Firmware des Geräts.[/COLOR][/B][CR]Der BL301-Bootloader-Blob wurde vom CoreELEC-Team angepasst, um alle Funktionen zu unterstützen, mit denen ein Gerät aus dem Standby- oder ausgeschalteten Zustand aufgeweckt wird!"
+
+msgctxt "#33517"
+msgid "Finished update of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Aktualisierung des BL301 auf dem internen eMMC abgeschlossen.[CR]Ein Neustart ist jetzt erforderlich!"
+
+msgctxt "#33518"
+msgid "Error [%d] has occurred while using the 'inject_bl301' tool![CR]See '/storage/inject_bl301.log' for details."
+msgstr "Fehler [%d] beim Ausführen des 'inject_bl301'-Tools![CR]Details in '/storage/inject_bl301.log'."
+
+msgctxt "#33519"
+msgid "System is not supported by BL301 injection![CR]See '/storage/inject_bl301.log' for details."
+msgstr "Das System wird von der BL301-Injektion nicht unterstützt![CR]Details in '/storage/inject_bl301.log'."
+
+msgctxt "#33520"
+msgid "Update of BL301 on eMMC is not needed."
+msgstr "Eine Aktualisierung des BL301 auf dem eMMC ist nicht erforderlich."
+
+msgctxt "#33521"
+msgid "[B][COLOR red]Note: This will remove the bl301 injection on your device.[/COLOR][CR]The injected BL301 bootloader blob will be removed by the backup done automatically before injection.[/B]"
+msgstr "[B][COLOR red]Hinweis: Dies entfernt die BL301-Injektion vom Gerät.[/COLOR][CR]Der injizierte BL301-Bootloader-Blob wird anhand des vor der Injektion automatisch erstellten Backups entfernt.[/B]"
+
+msgctxt "#33522"
+msgid "Finished remove of the BL301 on internal eMMC.[CR]A reboot is now required!"
+msgstr "Entfernen des BL301 vom internen eMMC abgeschlossen.[CR]Ein Neustart ist jetzt erforderlich!"
+
+msgctxt "#33523"
+msgid "Finished update of /flash/dtb.img.[CR]A reboot is now required!"
+msgstr "Aktualisierung von /flash/dtb.img abgeschlossen.[CR]Ein Neustart ist jetzt erforderlich!"
+
+msgctxt "#33524"
+msgid "[COLOR red]Are you sure to change this value?[/COLOR][CR]Please enter confirmation code '%s'"
+msgstr "[COLOR red]Diesen Wert wirklich ändern?[/COLOR][CR]Bitte Bestätigungscode '%s' eingeben"
+
+msgctxt "#33525"
+msgid "Terminal sharing"
+msgstr "Terminal-Freigabe"
+
+msgctxt "#33526"
+msgid "Enable terminal sharing"
+msgstr "Terminal-Freigabe aktivieren"
+
+msgctxt "#33527"
+msgid "Send invitation to @DISTRONAME@ developers"
+msgstr "Einladung an die @DISTRONAME@-Entwickler senden"
+
+msgctxt "#33528"
+msgid "Hint: enable this option only when requested by team @DISTRONAME@"
+msgstr "Hinweis: Diese Option nur aktivieren, wenn das @DISTRONAME@-Team darum bittet"
+
+msgctxt "#33529"
+msgid "Access control key"
+msgstr "Schlüssel für die Zugriffskontrolle"
+
+msgctxt "#33530"
+msgid "Connection name"
+msgstr "Verbindungsname"
 
 msgctxt "#33531"
 msgid "UAS setting changed.[CR]A reboot is required for the new setting to take effect."
