@@ -4,6 +4,7 @@ build/
 # bytecode files
 *.pyo
 *.pyc
+__pycache__/
 
 # backup files
 *.orig

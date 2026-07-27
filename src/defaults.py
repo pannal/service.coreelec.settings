@@ -87,11 +87,7 @@ system = {
 
 updates = {
     'ENABLED': not os.path.exists('/dev/.update_disabled'),
-    'UPDATE_REQUEST_URL': 'https://update.coreelec.org/updates.php',
-    'UPDATE_DOWNLOAD_URL': 'https://%s/%s/%s',
     'LOCAL_UPDATE_DIR': '/storage/.update/',
-
-    'RPI_FLASHING_TRIGGER': '/storage/.rpi_flash_firmware',
     }
 
 about = {'ENABLED': True}
