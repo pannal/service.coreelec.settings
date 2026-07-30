@@ -39,7 +39,15 @@ xbmcDialog = xbmcgui.Dialog()
 xbmcm = xbmc.Monitor()
 
 is_service = False
-conf_lock = False
+# A real lock, not a flag. Held across a whole read-modify-write of the config
+# so two writers cannot both load, both edit their own copy, and both save -
+# which drops whichever change was saved first. The update poll thread writes
+# LastNotified from the background while the settings window writes from the UI,
+# so that pairing happens in the field. Reentrant because write_setting holds it
+# over its own load_config/save_config calls, and released on the way out of a
+# with-block: the flag it replaces stayed set forever if anything raised, and
+# every later config access spun on it.
+conf_lock = threading.RLock()
 __busy__ = 0
 xbmcIsPlaying = 0
 input_request = False
@@ -805,43 +813,35 @@ def standby_devices():
 
 def load_config():
     try:
-        global conf_lock
-        while conf_lock:
-            time.sleep(0.2)
-        conf_lock = True
-        if os.path.exists(configFile):
-            config_file = open(configFile, 'r')
-            config_text = config_file.read()
-            config_file.close()
-        else:
-            config_text = ''
-        if config_text == '':
-            xml_conf = minidom.Document()
-            xml_main = xml_conf.createElement('coreelec')
-            xml_conf.appendChild(xml_main)
-            xml_sub = xml_conf.createElement('addon_config')
-            xml_main.appendChild(xml_sub)
-            xml_sub = xml_conf.createElement('settings')
-            xml_main.appendChild(xml_sub)
-            config_text = xml_conf.toprettyxml()
-        else:
-            xml_conf = minidom.parseString(config_text)
-        conf_lock = False
-        return xml_conf
+        with conf_lock:
+            if os.path.exists(configFile):
+                config_file = open(configFile, 'r')
+                config_text = config_file.read()
+                config_file.close()
+            else:
+                config_text = ''
+            if config_text == '':
+                xml_conf = minidom.Document()
+                xml_main = xml_conf.createElement('coreelec')
+                xml_conf.appendChild(xml_main)
+                xml_sub = xml_conf.createElement('addon_config')
+                xml_main.appendChild(xml_sub)
+                xml_sub = xml_conf.createElement('settings')
+                xml_main.appendChild(xml_sub)
+                config_text = xml_conf.toprettyxml()
+            else:
+                xml_conf = minidom.parseString(config_text)
+            return xml_conf
     except Exception as e:
         dbg_log('oe::load_config', 'ERROR: (' + repr(e) + ')')
 
 
 def save_config(xml_conf):
     try:
-        global configFile, conf_lock
-        while conf_lock:
-            time.sleep(0.2)
-        conf_lock = True
-        config_file = open(configFile, 'w')
-        config_file.write(xml_conf.toprettyxml())
-        config_file.close()
-        conf_lock = False
+        with conf_lock:
+            config_file = open(configFile, 'w')
+            config_file.write(xml_conf.toprettyxml())
+            config_file.close()
     except Exception as e:
         dbg_log('oe::save_config', 'ERROR: (' + repr(e) + ')')
 
@@ -880,11 +880,14 @@ def read_node(node_name):
 
 def remove_node(node_name):
     try:
-        xml_conf = load_config()
-        xml_node = xml_conf.getElementsByTagName(node_name)
-        for xml_main_node in xml_node:
-            xml_main_node.parentNode.removeChild(xml_main_node)
-        save_config(xml_conf)
+        # Load, edit and save as one operation: another writer loading in the
+        # middle would save a copy that still has the node.
+        with conf_lock:
+            xml_conf = load_config()
+            xml_node = xml_conf.getElementsByTagName(node_name)
+            for xml_main_node in xml_node:
+                xml_main_node.parentNode.removeChild(xml_main_node)
+            save_config(xml_conf)
     except Exception as e:
         dbg_log('oe::remove_node', 'ERROR: (' + repr(e) + ')')
 
@@ -906,35 +909,41 @@ def read_setting(module, setting, default=None):
 
 def write_setting(module, setting, value, main_node='settings'):
     try:
-        xml_conf = load_config()
-        xml_settings = xml_conf.getElementsByTagName(main_node)
-        if len(xml_settings) == 0:
-            for xml_main in xml_conf.getElementsByTagName('coreelec'):
-                xml_sub = xml_conf.createElement(main_node)
-                xml_main.appendChild(xml_sub)
-                xml_settings = xml_conf.getElementsByTagName(main_node)
-        module_found = 0
-        setting_found = 0
-        for xml_setting in xml_settings:
-            for xml_modul in xml_setting.getElementsByTagName(module):
-                module_found = 1
-                for xml_modul_setting in xml_modul.getElementsByTagName(setting):
-                    setting_found = 1
-        if setting_found == 1:
-            if hasattr(xml_modul_setting.firstChild, 'nodeValue'):
-                xml_modul_setting.firstChild.nodeValue = value
+        # The whole read-modify-write, under one lock. Without it two writers
+        # both load the file, each edits its own copy, and each saves the whole
+        # document back - so the change saved first is silently dropped. The
+        # update poll thread writes LastNotified while the settings window
+        # writes whatever the user just changed, which is exactly that pairing.
+        with conf_lock:
+            xml_conf = load_config()
+            xml_settings = xml_conf.getElementsByTagName(main_node)
+            if len(xml_settings) == 0:
+                for xml_main in xml_conf.getElementsByTagName('coreelec'):
+                    xml_sub = xml_conf.createElement(main_node)
+                    xml_main.appendChild(xml_sub)
+                    xml_settings = xml_conf.getElementsByTagName(main_node)
+            module_found = 0
+            setting_found = 0
+            for xml_setting in xml_settings:
+                for xml_modul in xml_setting.getElementsByTagName(module):
+                    module_found = 1
+                    for xml_modul_setting in xml_modul.getElementsByTagName(setting):
+                        setting_found = 1
+            if setting_found == 1:
+                if hasattr(xml_modul_setting.firstChild, 'nodeValue'):
+                    xml_modul_setting.firstChild.nodeValue = value
+                else:
+                    xml_value = xml_conf.createTextNode(value)
+                    xml_modul_setting.appendChild(xml_value)
             else:
+                if module_found == 0:
+                    xml_modul = xml_conf.createElement(module)
+                    xml_setting.appendChild(xml_modul)
+                xml_setting = xml_conf.createElement(setting)
+                xml_modul.appendChild(xml_setting)
                 xml_value = xml_conf.createTextNode(value)
-                xml_modul_setting.appendChild(xml_value)
-        else:
-            if module_found == 0:
-                xml_modul = xml_conf.createElement(module)
-                xml_setting.appendChild(xml_modul)
-            xml_setting = xml_conf.createElement(setting)
-            xml_modul.appendChild(xml_setting)
-            xml_value = xml_conf.createTextNode(value)
-            xml_setting.appendChild(xml_value)
-        save_config(xml_conf)
+                xml_setting.appendChild(xml_value)
+            save_config(xml_conf)
     except Exception as e:
         dbg_log('oe::write_setting', 'ERROR: (' + repr(e) + ')')
 

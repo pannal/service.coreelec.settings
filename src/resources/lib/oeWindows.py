@@ -146,6 +146,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                 dictProperties['InfoText'] = self.oe._(setting['InfoText'])
                             if 'validate' in setting:
                                 dictProperties['validate'] = setting['validate']
+                            if setting.get('keep_order'):
+                                dictProperties['keep_order'] = '1'
                             if 'values' in setting:
                                 # Use ~~~ as separator to avoid conflicts with | in device values
                                 dictProperties['values'] = '~~~'.join(setting['values'])
@@ -260,6 +262,10 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                     items1 = []
                     items2 = []
                     current_label = None
+                    # Opt-out for settings whose values have a meaningful fixed
+                    # order, where floating the current one to the top would
+                    # rearrange the list every time it is opened.
+                    keep_order = selectedItem.getProperty('keep_order') == '1'
                     # Use ~~~ as separator to avoid conflicts with | in device values
                     for item in selectedItem.getProperty('values').split('~~~'):
                         if item != '###':
@@ -275,13 +281,14 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             i1 = ''
                             i2 = ''
                         if i2 == strValue:
-                            items1.insert(0, i1)
-                            items2.insert(0, i2)
                             current_label = i1  # Remember the label for current value
-                        else:
-                            # move current on top of the list
-                            items1.append(i1)
-                            items2.append(i2)
+                            if not keep_order:
+                                # move current on top of the list
+                                items1.insert(0, i1)
+                                items2.insert(0, i2)
+                                continue
+                        items1.append(i1)
+                        items2.append(i2)
                     # Set the label for display outside the selection box
                     if current_label:
                         selectedItem.setProperty('display_label', current_label)

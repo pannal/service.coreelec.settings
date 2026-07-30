@@ -521,6 +521,86 @@ msgctxt "#32030"
 msgid "Update To Next Stable"
 msgstr ""
 
+msgctxt "#32031"
+msgid "Show Pre-releases"
+msgstr ""
+
+msgctxt "#32032"
+msgid "Unlock Internal Channel"
+msgstr ""
+
+msgctxt "#32033"
+msgid "Enter the internal channel password"
+msgstr ""
+
+msgctxt "#32034"
+msgid "Wrong password."
+msgstr ""
+
+msgctxt "#32035"
+msgid "Internal channel unlocked."
+msgstr ""
+
+msgctxt "#32036"
+msgid "The internal channel is not available in this build."
+msgstr ""
+
+msgctxt "#32037"
+msgid "Not enough free space to download this update."
+msgstr ""
+
+msgctxt "#32038"
+msgid "Checksum verification failed. The download was discarded."
+msgstr ""
+
+msgctxt "#32039"
+msgid "No checksum published for this build. Download discarded."
+msgstr ""
+
+msgctxt "#32040"
+msgid "This is not the newest build in the %s channel. Automatic updates will be switched off so it is not replaced."
+msgstr ""
+
+msgctxt "#32041"
+msgid "No builds are available in this channel."
+msgstr ""
+
+msgctxt "#32042"
+msgid "Channel unavailable: %s"
+msgstr ""
+
+msgctxt "#32043"
+msgid "running"
+msgstr ""
+
+msgctxt "#32044"
+msgid "newest"
+msgstr ""
+
+msgctxt "#32045"
+msgid "An update has been downloaded. Reboot now to apply it?"
+msgstr ""
+
+msgctxt "#32046"
+msgid "Include releases marked as pre-release on GitHub. These are not production builds."
+msgstr ""
+
+msgctxt "#32047"
+msgid "Unlock the restricted internal test channel with a password."
+msgstr ""
+
+msgctxt "#32048"
+msgid "Update downloaded - reboot to apply it"
+msgstr ""
+
+msgctxt "#32049"
+msgid "Update failed - see the log for details."
+msgstr ""
+
+msgctxt "#32050"
+msgid "This channel is locked. Unlock it with the password first."
+msgstr ""
+
 msgctxt "#32100"
 msgid "Connections"
 msgstr ""

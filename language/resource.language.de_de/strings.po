@@ -577,6 +577,86 @@ msgctxt "#32030"
 msgid "Update To Next Stable"
 msgstr "Auf nächste stabile Version aktualisieren"
 
+msgctxt "#32031"
+msgid "Show Pre-releases"
+msgstr "Vorabversionen anzeigen"
+
+msgctxt "#32032"
+msgid "Unlock Internal Channel"
+msgstr "Internen Kanal entsperren"
+
+msgctxt "#32033"
+msgid "Enter the internal channel password"
+msgstr "Passwort für den internen Kanal eingeben"
+
+msgctxt "#32034"
+msgid "Wrong password."
+msgstr "Falsches Passwort."
+
+msgctxt "#32035"
+msgid "Internal channel unlocked."
+msgstr "Interner Kanal entsperrt."
+
+msgctxt "#32036"
+msgid "The internal channel is not available in this build."
+msgstr "Der interne Kanal ist in dieser Version nicht verfügbar."
+
+msgctxt "#32037"
+msgid "Not enough free space to download this update."
+msgstr "Nicht genügend freier Speicherplatz für dieses Update."
+
+msgctxt "#32038"
+msgid "Checksum verification failed. The download was discarded."
+msgstr "Prüfsummenvergleich fehlgeschlagen. Download verworfen."
+
+msgctxt "#32039"
+msgid "No checksum published for this build. Download discarded."
+msgstr "Keine Prüfsumme veröffentlicht. Download verworfen."
+
+msgctxt "#32040"
+msgid "This is not the newest build in the %s channel. Automatic updates will be switched off so it is not replaced."
+msgstr "Dies ist nicht die neueste Version im Kanal %s. Automatische Updates werden deaktiviert, damit sie nicht ersetzt wird."
+
+msgctxt "#32041"
+msgid "No builds are available in this channel."
+msgstr "In diesem Kanal sind keine Versionen verfügbar."
+
+msgctxt "#32042"
+msgid "Channel unavailable: %s"
+msgstr "Kanal nicht verfügbar: %s"
+
+msgctxt "#32043"
+msgid "running"
+msgstr "aktiv"
+
+msgctxt "#32044"
+msgid "newest"
+msgstr "neueste"
+
+msgctxt "#32045"
+msgid "An update has been downloaded. Reboot now to apply it?"
+msgstr "Ein Update wurde heruntergeladen. Jetzt neu starten, um es anzuwenden?"
+
+msgctxt "#32046"
+msgid "Include releases marked as pre-release on GitHub. These are not production builds."
+msgstr "Versionen einbeziehen, die auf GitHub als Vorabversion markiert sind. Dies sind keine Produktivversionen."
+
+msgctxt "#32047"
+msgid "Unlock the restricted internal test channel with a password."
+msgstr "Den eingeschränkten internen Testkanal mit einem Passwort entsperren."
+
+msgctxt "#32048"
+msgid "Update downloaded - reboot to apply it"
+msgstr "Update heruntergeladen - zum Anwenden neu starten"
+
+msgctxt "#32049"
+msgid "Update failed - see the log for details."
+msgstr "Update fehlgeschlagen - Details siehe Log."
+
+msgctxt "#32050"
+msgid "This channel is locked. Unlock it with the password first."
+msgstr "Dieser Kanal ist gesperrt. Bitte zuerst mit dem Passwort entsperren."
+
 msgctxt "#32100"
 msgid "Connections"
 msgstr "Verbindungen"
