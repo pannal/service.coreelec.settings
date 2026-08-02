@@ -15,7 +15,13 @@ Rotating the folder means running this again and shipping an addon update. The
 password is never stored anywhere - if it is lost, reseal with a new one.
 
 Needs pycryptodome on the machine you run it on (it ships in the image, but this
-script runs on your build host).
+script runs on your build host):
+
+    pip install pycryptodome
+
+Debian and Ubuntu name their package python3-pycryptodome, and it installs the
+library as Cryptodome rather than Crypto. Both spellings are accepted; the pip
+package above is the one that matches the image.
 """
 
 import argparse

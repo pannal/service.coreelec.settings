@@ -21,7 +21,12 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 
-from Crypto.Cipher import AES
+# See the note in channels.py: Debian's package exposes pycryptodome as
+# Cryptodome, everywhere else it is Crypto.
+try:
+    from Crypto.Cipher import AES
+except ImportError:  # pragma: no cover - depends on the host's packaging
+    from Cryptodome.Cipher import AES
 
 API_URL = 'https://g.api.mega.co.nz/cs'
 
