@@ -51,7 +51,7 @@ TESTING_LINK = 'https://mega.nz/folder/mA0AAIRL#huzd7S1XCEYSQXPEcR_rHw'
 # Mega folder key itself, so anyone who has ever opened the blob keeps access to
 # that folder permanently. A real rotation means creating a NEW Mega folder,
 # moving the builds across, and sealing that link instead.
-INTERNAL_BLOB = 'AZqhOnUw/dLootg3pst8cxk6Ra2xSu4RdcFyD7JNH0e8ZYEqf2YZlgh7rdr0F8XhPJDC7MBmDzTiDUtcUnXxhTp5LgRXnngQ3FQ/A4QX+YECC+qyITekNTqTR8UieDKBNUkV'
+INTERNAL_BLOB = 'AVFDFG4qyTO4HuUORtu9XfaiEAcEP3jJnCzo2tmWPCRSbPS8xS7SgcebNgahoqZ1Asb35Yx9T/PPJEPmFJs0DhD9zB1sII3UErOm+74zR+ADIgPHeLD4u/KyRB8v6UNleu0m'
 
 BLOB_VERSION = 1
 _SALT_LEN = 16
