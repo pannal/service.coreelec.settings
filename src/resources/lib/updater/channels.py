@@ -18,7 +18,13 @@ import base64
 import hashlib
 import os
 
-from Crypto.Cipher import AES
+# pycryptodome installs as Crypto, which is what the image ships. Debian's
+# python3-pycryptodome installs the same library under Cryptodome instead, so a
+# build host that took the distro package fails the import without this.
+try:
+    from Crypto.Cipher import AES
+except ImportError:  # pragma: no cover - depends on the host's packaging
+    from Cryptodome.Cipher import AES
 
 RELEASE = 'Release'
 TESTING = 'Testing'

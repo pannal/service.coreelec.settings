@@ -16,7 +16,10 @@ import urllib.error
 sys.path.insert(0, os.path.join(
     os.path.dirname(os.path.abspath(__file__)), '..', 'src', 'resources', 'lib'))
 
-from Crypto.Cipher import AES  # noqa: E402
+try:
+    from Crypto.Cipher import AES  # noqa: E402
+except ImportError:
+    from Cryptodome.Cipher import AES  # noqa: E402
 
 from updater import mega_client  # noqa: E402
 
