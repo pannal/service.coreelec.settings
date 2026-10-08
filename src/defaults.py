@@ -79,6 +79,7 @@ system = {
         CONFIG_CACHE,
         '/storage/.ssh',
         ],
+    'BACKUP_LOG_DIR': '%s/log' % CONFIG_CACHE,
     'XBMC_THUMBNAILS': XBMC_THUMBNAILS,
     'BACKUP_DESTINATION': '/storage/backup/',
     'RESTORE_DIR': '/storage/.restore/',

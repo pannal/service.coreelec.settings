@@ -1538,3 +1538,11 @@ msgstr ""
 msgctxt "#33531"
 msgid "UAS setting changed.[CR]A reboot is required for the new setting to take effect."
 msgstr ""
+
+msgctxt "#33532"
+msgid "Exclude persistent logs from backups"
+msgstr ""
+
+msgctxt "#33533"
+msgid "When persistent logging is enabled, omit its log folder from backups. Logging settings and Kodi logs are still included."
+msgstr ""

@@ -1622,3 +1622,11 @@ msgstr "Verbindungsname"
 msgctxt "#33531"
 msgid "UAS setting changed.[CR]A reboot is required for the new setting to take effect."
 msgstr "UAS-Einstellung geändert.[CR]Ein Neustart ist erforderlich, damit die neue Einstellung wirksam wird."
+
+msgctxt "#33532"
+msgid "Exclude persistent logs from backups"
+msgstr "Persistente Protokolle von Sicherungen ausschließen"
+
+msgctxt "#33533"
+msgid "When persistent logging is enabled, omit its log folder from backups. Logging settings and Kodi logs are still included."
+msgstr "Wenn die persistente Protokollierung aktiviert ist, wird ihr Protokollordner beim Sichern ausgelassen. Protokollierungseinstellungen und Kodi-Protokolle werden weiterhin gesichert."
