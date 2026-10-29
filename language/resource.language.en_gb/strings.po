@@ -1546,3 +1546,19 @@ msgstr ""
 msgctxt "#33533"
 msgid "When persistent logging is enabled, omit its log folder from backups. Logging settings and Kodi logs are still included."
 msgstr ""
+
+msgctxt "#32537"
+msgid "Wi-Fi throughput profile"
+msgstr ""
+
+msgctxt "#914"
+msgid "Use alternative tuning for the built-in Wi-Fi. This may improve transfer rates, but can increase CPU load or affect playback. Off by default. Restart CoreELEC to apply changes."
+msgstr ""
+
+msgctxt "#33534"
+msgid "Wi-Fi throughput setting saved.[CR]Restart CoreELEC to apply it."
+msgstr ""
+
+msgctxt "#33535"
+msgid "Could not save the Wi-Fi throughput setting."
+msgstr ""

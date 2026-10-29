@@ -1630,3 +1630,19 @@ msgstr "Persistente Protokolle von Sicherungen ausschließen"
 msgctxt "#33533"
 msgid "When persistent logging is enabled, omit its log folder from backups. Logging settings and Kodi logs are still included."
 msgstr "Wenn die persistente Protokollierung aktiviert ist, wird ihr Protokollordner beim Sichern ausgelassen. Protokollierungseinstellungen und Kodi-Protokolle werden weiterhin gesichert."
+
+msgctxt "#32537"
+msgid "Wi-Fi throughput profile"
+msgstr "WLAN-Durchsatzprofil"
+
+msgctxt "#914"
+msgid "Use alternative tuning for the built-in Wi-Fi. This may improve transfer rates, but can increase CPU load or affect playback. Off by default. Restart CoreELEC to apply changes."
+msgstr "Alternative Abstimmung für das integrierte WLAN verwenden. Dies kann die Übertragungsrate verbessern, aber die CPU stärker auslasten oder die Wiedergabe beeinträchtigen. Standardmäßig deaktiviert. Änderungen werden nach einem Neustart von CoreELEC wirksam."
+
+msgctxt "#33534"
+msgid "Wi-Fi throughput setting saved.[CR]Restart CoreELEC to apply it."
+msgstr "WLAN-Durchsatzeinstellung gespeichert.[CR]CoreELEC neu starten, damit sie wirksam wird."
+
+msgctxt "#33535"
+msgid "Could not save the Wi-Fi throughput setting."
+msgstr "Die WLAN-Durchsatzeinstellung konnte nicht gespeichert werden."

@@ -12,6 +12,7 @@ import subprocess
 import shutil
 import platform
 import random
+import wifi_profile
 
 class hardware:
     ENABLED = False
@@ -339,6 +340,15 @@ class hardware:
                             'type': 'multivalue',
                             'values': ['ondemand', 'performance'],
                             },
+                        'wifi_throughput': {
+                            'order': 2,
+                            'name': 32537,
+                            'InfoText': 914,
+                            'value': '0',
+                            'hidden': 'true',
+                            'action': 'set_wifi_throughput',
+                            'type': 'bool',
+                            },
                         },
                     },
                 'hdd': {
@@ -522,6 +532,7 @@ class hardware:
     def load_values(self):
         try:
             self.oe.dbg_log('hardware::load_values', 'enter_function', 0)
+            self.load_wifi_throughput()
             hide_power_section = True
 
             if not os.path.exists('/sys/class/fan'):
@@ -890,6 +901,32 @@ class hardware:
             self.oe.dbg_log('hardware::set_vesa_enable', 'exit_function', 0)
         except Exception as e:
             self.oe.dbg_log('hardware::set_vesa_enable', 'ERROR: (%s)' % repr(e), 4)
+        finally:
+            self.oe.set_busy(0)
+
+    def load_wifi_throughput(self):
+        setting = self.struct['performance']['settings']['wifi_throughput']
+        setting['hidden'] = 'true'
+        try:
+            active = wifi_profile.active_value()
+            if active is not None:
+                setting['value'] = wifi_profile.saved_value(active)
+                setting.pop('hidden', None)
+        except (OSError, ValueError) as error:
+            self.oe.dbg_log('hardware::load_wifi_throughput', 'ERROR: (%s)' % error, 4)
+
+    def set_wifi_throughput(self, listItem=None):
+        if listItem is None or wifi_profile.active_value() is None:
+            return
+        self.oe.set_busy(1)
+        try:
+            value = listItem.getProperty('value')
+            wifi_profile.save_value(value)
+            self.struct['performance']['settings']['wifi_throughput']['value'] = value
+            xbmcgui.Dialog().ok(self.oe._(33512), self.oe._(33534))
+        except (OSError, ValueError) as error:
+            self.oe.dbg_log('hardware::set_wifi_throughput', 'ERROR: (%s)' % error, 4)
+            xbmcgui.Dialog().ok(self.oe._(33512), self.oe._(33535))
         finally:
             self.oe.set_busy(0)
 
