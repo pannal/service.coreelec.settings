@@ -706,10 +706,13 @@ class hardware:
 
             self.struct['hdd']['settings']['disk_idle']['values'] = disk_idle_times_names
 
-            # Hide the UAS toggle on builds that don't ship uas.ko.
-            if not glob.glob('/usr/lib/modules/*/uas/uas.ko'):
-                self.struct['hdd']['settings']['uas_enable']['hidden'] = 'true'
-            self.struct['hdd']['settings']['uas_enable']['value'] = \
+            uas_setting = self.struct['hdd']['settings']['uas_enable']
+            if (os.path.exists('/sys/bus/usb/drivers/uas/p3i_policy') or
+                    glob.glob('/usr/lib/modules/*/uas/uas.ko')):
+                uas_setting.pop('hidden', None)
+            else:
+                uas_setting['hidden'] = 'true'
+            uas_setting['value'] = \
                 '1' if os.path.exists('/storage/.config/uas.enabled') else '0'
 
             if hide_power_section:
