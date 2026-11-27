@@ -14,6 +14,7 @@ import xbmcgui
 from dbussy import DBusError
 
 import dbus_connman
+import ethernet_calibration
 import log
 import modules
 import oe
@@ -470,7 +471,25 @@ class connman(modules.Module):
             'hidden': 'true',
             'order': 2,
             'name': 32103,
-            'settings': {'Powered': {
+            'settings': {'CalibrationHealth': {
+                'order': 2,
+                'name': 33652,
+                'value': '',
+                'action': '',
+                'type': 'label',
+            }, 'CalibrationTiming': {
+                'order': 3,
+                'name': 33732,
+                'value': '',
+                'action': '',
+                'type': 'label',
+            }, 'Calibration': {
+                'order': 4,
+                'name': 33620,
+                'value': '',
+                'action': 'calibrate_ethernet',
+                'type': 'button',
+            }, 'Powered': {
                 'order': 1,
                 'name': 32105,
                 'value': '',
@@ -557,6 +576,9 @@ class connman(modules.Module):
         self.listItems = {}
         self.busy = 0
         self.visible = False
+        self.calibration_lock = threading.Lock()
+        self.calibration_stop = threading.Event()
+        self.calibration_thread = None
 
     @log.log_function()
     def clear_list(self):
@@ -567,11 +589,30 @@ class connman(modules.Module):
 
     @log.log_function()
     def do_init(self):
-        self.visible = True
+        with self.calibration_lock:
+            self.calibration_stop.set()
+            self.visible = True
+            self.calibration_stop = threading.Event()
+            self.calibration_thread = threading.Thread(
+                target=self.refresh_calibration, args=(self.calibration_stop,), daemon=True)
+            self.calibration_thread.start()
+
+    def refresh_calibration(self, stop):
+        while not stop.wait(2):
+            try:
+                window = oe.winOeMain
+                if not self.visible or window is None or not window.visible:
+                    continue
+                if window.calibration_rows:
+                    ethernet_calibration.refresh_rows(window, stop)
+            except (RuntimeError, AttributeError, IndexError) as error:
+                log.log('Ethernet status refresh failed: %s' % error, log.ERROR)
 
     @log.log_function()
     def exit(self):
-        self.visible = False
+        with self.calibration_lock:
+            self.visible = False
+            self.calibration_stop.set()
         self.clear_list()
 
     @log.log_function()
@@ -742,7 +783,17 @@ class connman(modules.Module):
                     self.struct['Timeservers']['settings'][setting]['value'] = self.clock_properties['Timeservers'][int(setting)]
             else:
                 self.struct['Timeservers']['settings'][setting]['value'] = ''
+        settings = self.struct[dbus_connman.PATH_TECH_ETHERNET]['settings']
+        values, info = ethernet_calibration.menu_status(with_help=True)
+        for name, value in values.items():
+            settings[name]['value'] = value
+        settings['CalibrationTiming']['InfoText'] = info
         oe.winOeMain.build_menu(self.struct)
+
+    @log.log_function()
+    def calibrate_ethernet(self, **kwargs):
+        ethernet_calibration.open_dialog()
+        self.menu_loader()
 
     @log.log_function()
     def open_context_menu(self, listItem):

@@ -28,6 +28,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
     def __init__(self, *args, **kwargs):
         self.visible = False
+        self.calibration_rows = {}
+        self.calibration_positions = {}
         self.lastMenu = -1
         self.lastEntry = -1
         self.guiMenList = 1000
@@ -113,12 +115,19 @@ class mainWindow(xbmcgui.WindowXMLDialog):
             for strProp in dictProperties:
                 lstItem.setProperty(strProp, str(dictProperties[strProp]))
             self.getControl(int(strType)).addItem(lstItem)
+            if dictProperties.get('entry') in (
+                    'CalibrationHealth', 'CalibrationTiming'):
+                self.calibration_rows[dictProperties['entry']] = lstItem
+                self.calibration_positions[dictProperties['entry']] = (
+                    int(strType), self.getControl(int(strType)).size() - 1)
             return lstItem
         except Exception as e:
             self.oe.dbg_log('oeWindows.mainWindow::addConfigItem(' + strName + ')', 'ERROR: (' + repr(e) + ')')
 
     def build_menu(self, struct, fltr=[], optional='0'):
         try:
+            self.calibration_rows = {}
+            self.calibration_positions = {}
             self.getControl(1100).reset()
             m_menu = []
             for category in sorted(struct, key=lambda x: struct[x]['order']):
@@ -143,7 +152,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                 'action': setting['action'],
                                 }
                             if 'InfoText' in setting:
-                                dictProperties['InfoText'] = self.oe._(setting['InfoText'])
+                                info = setting['InfoText']
+                                dictProperties['InfoText'] = self.oe._(info) if isinstance(info, int) else info
                             if 'validate' in setting:
                                 dictProperties['validate'] = setting['validate']
                             if setting.get('keep_order'):
@@ -199,6 +209,12 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         except Exception as e:
             self.oe.dbg_log('oeWindows.mainWindow::showButton(' + str(number) + ', ' + str(action) + ')', 'ERROR: (' + repr(e) + ')')
 
+    def calibration_item(self, controlID, position):
+        for entry, location in self.calibration_positions.items():
+            if location == (controlID, position):
+                return self.calibration_rows.get(entry)
+        return None
+
     def onAction(self, action):
         try:
             focusId = self.getFocusId()
@@ -213,7 +229,9 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                 curPos = self.getControl(focusId).getSelectedPosition()
                 listSize = self.getControl(focusId).size()
                 newPos = curPos
-                nextItem = self.getControl(focusId).getListItem(newPos)
+                nextItem = self.calibration_item(focusId, newPos)
+                if nextItem is None:
+                    nextItem = self.getControl(focusId).getListItem(newPos)
                 if (curPos != self.lastGuiList or nextItem.getProperty('typ') == 'separator') and actionId in [
                     2,
                     3,
@@ -230,7 +248,9 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             newPos = listSize - 1
                         if newPos >= listSize:
                             newPos = 0
-                        nextItem = self.getControl(focusId).getListItem(newPos)
+                        nextItem = self.calibration_item(focusId, newPos)
+                        if nextItem is None:
+                            nextItem = self.getControl(focusId).getListItem(newPos)
                     self.lastGuiList = newPos
                     self.getControl(focusId).selectItem(newPos)
                     self.setProperty('InfoText', nextItem.getProperty('InfoText'))
@@ -254,10 +274,14 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                         return
             if controlID in self.guiLists:
                 selectedPosition = self.getControl(controlID).getSelectedPosition()
-                selectedMenuItem = self.getControl(self.guiMenList).getSelectedItem()
-                selectedItem = self.getControl(controlID).getSelectedItem()
+                selectedItem = self.calibration_item(controlID, selectedPosition)
+                if selectedItem is None:
+                    selectedItem = self.getControl(controlID).getSelectedItem()
                 strTyp = selectedItem.getProperty('typ')
                 strValue = selectedItem.getProperty('value')
+                if strTyp == 'label' and selectedItem.getProperty('action') == '':
+                    return
+                selectedMenuItem = self.getControl(self.guiMenList).getSelectedItem()
                 if strTyp == 'multivalue':
                     items1 = []
                     items2 = []
@@ -373,7 +397,9 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         try:
             if controlID in self.guiLists:
                 currentEntry = self.getControl(controlID).getSelectedPosition()
-                selectedEntry = self.getControl(controlID).getSelectedItem()
+                selectedEntry = self.calibration_item(controlID, currentEntry)
+                if selectedEntry is None:
+                    selectedEntry = self.getControl(controlID).getSelectedItem()
                 if controlID == self.guiList:
                     self.setProperty('InfoText', selectedEntry.getProperty('InfoText'))
                 if currentEntry != self.lastGuiList:

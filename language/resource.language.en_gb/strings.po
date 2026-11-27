@@ -1558,3 +1558,503 @@ msgstr ""
 msgctxt "#33535"
 msgid "Could not save the Wi-Fi throughput setting."
 msgstr ""
+
+msgctxt "#33620"
+msgid "Calibrate Ethernet"
+msgstr ""
+
+msgctxt "#33621"
+msgid "No recent packet errors"
+msgstr ""
+
+msgctxt "#33622"
+msgid "CRC packet errors detected"
+msgstr ""
+
+msgctxt "#33623"
+msgid "Waiting for traffic"
+msgstr ""
+
+msgctxt "#33624"
+msgid "Not enough recent traffic"
+msgstr ""
+
+msgctxt "#33625"
+msgid "No gigabit link"
+msgstr ""
+
+msgctxt "#33626"
+msgid "Calibration is not supported on this adapter."
+msgstr ""
+
+msgctxt "#33627"
+msgid "Testing Ethernet"
+msgstr ""
+
+msgctxt "#33628"
+msgid "Not saved"
+msgstr ""
+
+msgctxt "#33629"
+msgid "Applied"
+msgstr ""
+
+msgctxt "#33630"
+msgid "Waiting to apply"
+msgstr ""
+
+msgctxt "#33631"
+msgid "Inactive"
+msgstr ""
+
+msgctxt "#33632"
+msgid "Testing timing candidates"
+msgstr ""
+
+msgctxt "#33633"
+msgid "Checking upload speed"
+msgstr ""
+
+msgctxt "#33634"
+msgid "Checking download speed"
+msgstr ""
+
+msgctxt "#33635"
+msgid "Saving calibration"
+msgstr ""
+
+msgctxt "#33636"
+msgid "Run Ethernet test"
+msgstr ""
+
+msgctxt "#33637"
+msgid "Use previous calibration"
+msgstr ""
+
+msgctxt "#33638"
+msgid "Use factory setting"
+msgstr ""
+
+msgctxt "#33639"
+msgid "Ethernet will briefly disconnect. Pause playback and downloads before continuing."
+msgstr ""
+
+msgctxt "#33640"
+msgid "Choose a test"
+msgstr ""
+
+msgctxt "#33641"
+msgid "Full calibration (wired LAN)"
+msgstr ""
+
+msgctxt "#33642"
+msgid "Public iPerf3 server (directory or custom IP)"
+msgstr ""
+
+msgctxt "#33643"
+msgid "The first check uses 20 seconds of traffic plus connection setup (about 25 MB at 10 Mbps). A pass keeps your current timing without saving a new calibration. Only CRC packet errors trigger a repair, saved after two further checks. Ethernet may disconnect. The repair budget is 20 minutes and 256 MiB of payload. Gigabit speed is not measured. The server sees your IP; use one you have permission to test."
+msgstr ""
+
+msgctxt "#33644"
+msgid "Server IP address"
+msgstr ""
+
+msgctxt "#33645"
+msgid "Server port"
+msgstr ""
+
+msgctxt "#33646"
+msgid "Calibration saved. It will be used at startup."
+msgstr ""
+
+msgctxt "#33647"
+msgid "Ethernet status unavailable"
+msgstr ""
+
+msgctxt "#33648"
+msgid "Test cancelled. Previous timing kept or restored; saved calibration unchanged."
+msgstr ""
+
+msgctxt "#33649"
+msgid "Ethernet setting updated"
+msgstr ""
+
+msgctxt "#33650"
+msgid "Limited range; extra checks passed"
+msgstr ""
+
+msgctxt "#33651"
+msgid "Round %d of %d"
+msgstr ""
+
+msgctxt "#33652"
+msgid "Ethernet health"
+msgstr ""
+
+msgctxt "#33653"
+msgid "Saved calibration"
+msgstr ""
+
+msgctxt "#33654"
+msgid "Saved test evidence"
+msgstr ""
+
+msgctxt "#33655"
+msgid "Could not apply Ethernet setting"
+msgstr ""
+
+msgctxt "#33656"
+msgid "Restoring factory setting"
+msgstr ""
+
+msgctxt "#33657"
+msgid "Factory setting restored. Ethernet may need a few seconds to reconnect."
+msgstr ""
+
+msgctxt "#33658"
+msgid "Restoring previous calibration"
+msgstr ""
+
+msgctxt "#33659"
+msgid "No saved test"
+msgstr ""
+
+msgctxt "#33660"
+msgid "Trying another clean setting"
+msgstr ""
+
+msgctxt "#33661"
+msgid "Previous calibration restored."
+msgstr ""
+
+msgctxt "#33662"
+msgid "Reconnecting"
+msgstr ""
+
+msgctxt "#33663"
+msgid "Checking the current timing"
+msgstr ""
+
+msgctxt "#33664"
+msgid "Test passed. No packet errors were found; your current timing is unchanged and no new calibration was saved.[CR]Gigabit speed not measured."
+msgstr ""
+
+msgctxt "#33665"
+msgid "Packet errors detected. No calibration saved; previous timing kept. Try a wired LAN server for full calibration."
+msgstr ""
+
+msgctxt "#33666"
+msgid "Test could not complete. No calibration saved; previous timing kept. Check the connection and traffic source."
+msgstr ""
+
+msgctxt "#33667"
+msgid "This tests timings 0-31 with a wired LAN iPerf3 server and saves a calibration only after upload and download verification. The time budget is 25 minutes; reconnect times vary. Ethernet will disconnect during the scan. Pause playback and downloads before continuing."
+msgstr ""
+
+msgctxt "#33668"
+msgid "Choose a public iPerf3 server"
+msgstr ""
+
+msgctxt "#33669"
+msgid "Custom IPv4 address"
+msgstr ""
+
+msgctxt "#33670"
+msgid "Previous"
+msgstr ""
+
+msgctxt "#33671"
+msgid "Next"
+msgstr ""
+
+msgctxt "#33672"
+msgid "Delete"
+msgstr ""
+
+msgctxt "#33673"
+msgid "Enter a valid server address or port."
+msgstr ""
+
+msgctxt "#33674"
+msgid "Resolving public server"
+msgstr ""
+
+msgctxt "#33675"
+msgid "Public servers by region - iPerf.fr snapshot %s"
+msgstr ""
+
+msgctxt "#33676"
+msgid "Choose a listed server port"
+msgstr ""
+
+msgctxt "#33677"
+msgid "The directory reported %s. Availability may have changed."
+msgstr ""
+
+msgctxt "#33678"
+msgid "iPerf.fr snapshot %s. Availability and reverse-mode support are not guaranteed."
+msgstr ""
+
+msgctxt "#33679"
+msgid "Unsupported for this check"
+msgstr ""
+
+msgctxt "#33680"
+msgid "Public packet checks passed"
+msgstr ""
+
+msgctxt "#33681"
+msgid "Gigabit speed not measured"
+msgstr ""
+
+msgctxt "#33682"
+msgid "Calibration saved. The timing passed two packet checks and will be used at startup.[CR]Gigabit speed not measured."
+msgstr ""
+
+msgctxt "#33683"
+msgid "Trying another Ethernet timing"
+msgstr ""
+
+msgctxt "#33684"
+msgid "Verifying the selected timing"
+msgstr ""
+
+msgctxt "#33685"
+msgid "Reconnecting before trying another setting"
+msgstr ""
+
+msgctxt "#33700"
+msgid "Cloudflare HTTPS (experimental)"
+msgstr ""
+
+msgctxt "#33703"
+msgid "Use Cloudflare for an experimental packet check? A pass keeps your current timing; only measured CRC errors trigger repair. Each full check requests 25 MB over 20 seconds, with 3-second candidate screens. Repair reserves at most 256 MiB of payload and 20 minutes; Ethernet may disconnect. Reads are paced near 10 Mbps, not a sender/wire-rate or total wire-byte cap. Cloudflare sees your IP and request metadata. No results or telemetry are uploaded. Availability and permission for repeated fleet use are not guaranteed. Saving requires two full checks with a reconnect; gigabit speed is not measured."
+msgstr ""
+
+msgctxt "#33704"
+msgid "HTTPS packet checks passed (experimental)"
+msgstr ""
+
+msgctxt "#33705"
+msgid "Calibration saved. The timing passed two experimental HTTPS packet checks and will be used at startup.[CR]Gigabit speed not measured. Application reads were paced, not sender/wire rate or total wire bytes."
+msgstr ""
+
+msgctxt "#33686"
+msgid "Set Ethernet timing manually"
+msgstr ""
+
+msgctxt "#33687"
+msgid "Save this timing for every startup? It is manually set, not verified, and may disconnect Ethernet or make it unusable. Different devices can need different indices. No speed or packet test will run. Your previous verified LAN calibration, if present, is retained so you can restore it."
+msgstr ""
+
+msgctxt "#33688"
+msgid "Timing index (0-31)"
+msgstr ""
+
+msgctxt "#33689"
+msgid "Index %d manually set - not verified"
+msgstr ""
+
+msgctxt "#33690"
+msgid "Manual timing has not been verified"
+msgstr ""
+
+msgctxt "#33691"
+msgid "Saving manual Ethernet timing"
+msgstr ""
+
+msgctxt "#33692"
+msgid "Timing index %d saved manually. It will be applied at boot. It has not been verified for packet errors or gigabit speed."
+msgstr ""
+
+msgctxt "#33693"
+msgid "Enter a timing index from 0 to 31"
+msgstr ""
+
+msgctxt "#33710"
+msgid "Current timing"
+msgstr ""
+
+msgctxt "#33711"
+msgid "Index %d"
+msgstr ""
+
+msgctxt "#33712"
+msgid "Factory (index %d)"
+msgstr ""
+
+msgctxt "#33713"
+msgid "Applied"
+msgstr ""
+
+msgctxt "#33714"
+msgid "Pending"
+msgstr ""
+
+msgctxt "#33715"
+msgid "Could not apply"
+msgstr ""
+
+msgctxt "#33716"
+msgid "Temporary test setting"
+msgstr ""
+
+msgctxt "#33718"
+msgid "LAN speed verified"
+msgstr ""
+
+msgctxt "#33721"
+msgid "Timing index %d - candidate %d of %d"
+msgstr ""
+
+msgctxt "#33722"
+msgid "Elapsed: %d:%02d"
+msgstr ""
+
+msgctxt "#33723"
+msgid "Applying timing; Ethernet may disconnect"
+msgstr ""
+
+msgctxt "#33724"
+msgid "Waiting for Ethernet and its address (up to %d seconds remaining)"
+msgstr ""
+
+msgctxt "#33725"
+msgid "Connecting to the traffic source"
+msgstr ""
+
+msgctxt "#33726"
+msgid "Received %.1f / %.1f MB of application payload"
+msgstr ""
+
+msgctxt "#33727"
+msgid "Traffic: %d / %d seconds"
+msgstr ""
+
+msgctxt "#33728"
+msgid "Cancelling; restoring previous timing"
+msgstr ""
+
+msgctxt "#33729"
+msgid "Test could not complete. No calibration saved; previous timing kept or restored."
+msgstr ""
+
+msgctxt "#33730"
+msgid "Calibration failed. Check the timing status before retrying."
+msgstr ""
+
+msgctxt "#33731"
+msgid "Packet errors detected. No calibration saved; previous timing kept or restored."
+msgstr ""
+
+msgctxt "#33732"
+msgid "Ethernet timing"
+msgstr ""
+
+msgctxt "#33733"
+msgid "Index %d - Saved"
+msgstr ""
+
+msgctxt "#33734"
+msgid "Factory - Index %d"
+msgstr ""
+
+msgctxt "#33735"
+msgid "Index %d - Saved: %d"
+msgstr ""
+
+msgctxt "#33736"
+msgid "Factory - Index %d - Saved: %d"
+msgstr ""
+
+msgctxt "#33737"
+msgid "Index %d - Temporary"
+msgstr ""
+
+msgctxt "#33738"
+msgid "Timing not yet applied"
+msgstr ""
+
+msgctxt "#33739"
+msgid "Timing could not be applied"
+msgstr ""
+
+msgctxt "#33740"
+msgid "Index %d - Not saved"
+msgstr ""
+
+msgctxt "#33741"
+msgid "%s - Saved timing unavailable"
+msgstr ""
+
+msgctxt "#33742"
+msgid "Operation in progress"
+msgstr ""
+
+msgctxt "#33743"
+msgid "Current timing: %s."
+msgstr ""
+
+msgctxt "#33744"
+msgid "Selected timing: %s. Not yet applied."
+msgstr ""
+
+msgctxt "#33745"
+msgid "Selected timing: %s. Could not apply."
+msgstr ""
+
+msgctxt "#33746"
+msgid "Temporary timing: %s. It is not saved."
+msgstr ""
+
+msgctxt "#33747"
+msgid "Saved timing: index %d."
+msgstr ""
+
+msgctxt "#33748"
+msgid "No timing is saved for startup."
+msgstr ""
+
+msgctxt "#33749"
+msgid "Saved timing is unavailable or could not be used."
+msgstr ""
+
+msgctxt "#33750"
+msgid "The saved timing is in use."
+msgstr ""
+
+msgctxt "#33751"
+msgid "The saved timing is not in use."
+msgstr ""
+
+msgctxt "#33752"
+msgid "The saved timing has not been applied."
+msgstr ""
+
+msgctxt "#33753"
+msgid "Set manually. Not verified for packet errors or gigabit speed."
+msgstr ""
+
+msgctxt "#33754"
+msgid "Saved wired-LAN verification passed."
+msgstr ""
+
+msgctxt "#33755"
+msgid "Saved wired-LAN verification passed. Upload: %d Mbps. Download: %d Mbps."
+msgstr ""
+
+msgctxt "#33756"
+msgid "Saved public iPerf packet checks passed. Gigabit speed not measured."
+msgstr ""
+
+msgctxt "#33757"
+msgid "Saved experimental HTTPS packet checks passed. Gigabit speed not measured."
+msgstr ""
+
+msgctxt "#33758"
+msgid "Saved results describe the earlier test, not current Ethernet health."
+msgstr ""
+
+msgctxt "#33759"
+msgid "Timing details are unavailable during this operation."
+msgstr ""
